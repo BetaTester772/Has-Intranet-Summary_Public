@@ -93,7 +93,7 @@
 <script>
 
     // KST 기준 현재 날짜를 가져오는 함수, 라이브러리
-    const {DateTime} = require('luxon');
+    import { DateTime } from 'luxon';
 
     function getCurrentDateInKST() {
         const now = DateTime.local();
