@@ -11,9 +11,11 @@
 <body class="bg-gray-100 font-sans">
 
 <div class="container mx-auto p-6">
-    <h1 class="text-3xl mb-4">Has-Intranet-Summary<a href="https://summary.hees.academy/" class="text-green-500 hover:underline">(link)</a></h1>
+    <h1 class="text-3xl mb-4">Has-Intranet-Summary<a href="https://summary.hees.academy/"
+                                                     class="text-green-500 hover:underline">(link)</a></h1>
     <h3 class="text-xl mb-8"><a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSecNH8QtsuEVaMW84_vTAxwH47UF6Vvz2AhDW1cGz0o_aRVaQ/viewform" class="text-green-500 hover:underline">서비스
+            href="https://docs.google.com/forms/d/e/1FAIpQLSecNH8QtsuEVaMW84_vTAxwH47UF6Vvz2AhDW1cGz0o_aRVaQ/viewform"
+            class="text-green-500 hover:underline">서비스
         가입
         신청 link(Google Form)</a>(하나고 계정만 설문 가능)</h3>
 
@@ -90,14 +92,13 @@
 
 <script>
 
-    // KST 기준 현재 날짜를 가져오는 함수
-    function getCurrentDateInKST() {
-        const now = new Date();
-        const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000; // Convert to UTC timestamp
-        const KR_TIME_DIFF = 9 * 60 * 60 * 1000; // Korea is UTC+9
-        const krDate = new Date(utc + KR_TIME_DIFF);
+    // KST 기준 현재 날짜를 가져오는 함수, 라이브러리
+    const {DateTime} = require('luxon');
 
-        return krDate.toISOString().split('T')[0];
+    function getCurrentDateInKST() {
+        const now = DateTime.local();
+        const krDate = now.setZone('Asia/Seoul');
+        return krDate.toFormat('yyyy-MM-dd');
     }
 
     document.getElementById('currentDate').innerText = getCurrentDateInKST();
