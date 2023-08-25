@@ -96,9 +96,14 @@
     import { DateTime } from 'luxon';
 
     function getCurrentDateInKST() {
-        const now = DateTime.local();
-        const krDate = now.setZone('Asia/Seoul');
-        return krDate.toFormat('yyyy-MM-dd');
+        const kstDate = new Intl.DateTimeFormat('ko-KR', {
+          timeZone: 'Asia/Seoul',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }).format(new Date());
+
+        return kstDate.replace(/\. /g, '-').slice(0, -1)
     }
 
     document.getElementById('currentDate').innerText = getCurrentDateInKST();
