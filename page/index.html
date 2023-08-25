@@ -92,9 +92,7 @@
 
 <script>
 
-    // KST 기준 현재 날짜를 가져오는 함수, 라이브러리
-    import { DateTime } from 'luxon';
-
+    // KST 기준 현재 날짜를 가져오는 함수
     function getCurrentDateInKST() {
         const kstDate = new Intl.DateTimeFormat('ko-KR', {
           timeZone: 'Asia/Seoul',
