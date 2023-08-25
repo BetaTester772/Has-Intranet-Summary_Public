@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>서비스 안내</title>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+<div class="container mx-auto p-6">
+    <h1 class="text-3xl mb-4">Has-Intranet-Summary<a href="https://summary.hees.academy/" class="text-green-500 hover:underline">(link)</a></h1>
+    <h3 class="text-xl mb-8"><a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSecNH8QtsuEVaMW84_vTAxwH47UF6Vvz2AhDW1cGz0o_aRVaQ/viewform" class="text-green-500 hover:underline">서비스
+        가입
+        신청 link(Google Form)</a>(하나고 계정만 설문 가능)</h3>
+
+    <h2 class="text-2xl mb-4">서비스 안내</h2>
+
+    <h3 class="text-xl mb-2">서비스 설명</h3>
+    <ul class="list-disc ml-6 mb-6">
+        <li><strong>이름</strong>: 하나고등학교 인트라넷 게시글 요약 서비스</li>
+        <li><strong>서비스 내용</strong>: 현재 학생공지 게시판만 제공합니다. CBT 기간 동안 개선 가능성 있습니다.</li>
+        <li><strong>제작자</strong>:
+            <ul class="list-disc ml-6">
+                <li>22121 안호성: 백엔드, 프론트엔드, 디자인</li>
+                <li>23105 안세용: 프론트엔드, 디자인</li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- 서비스 안내 부분... -->
+
+    <h3 class="text-xl mb-2">일정 진행도 (현재 날짜: <span id="currentDate"></span>)</h3>
+    <div class="relative h-8 bg-gray-300 rounded-full mb-6">
+        <div class="absolute h-full bg-green-500 rounded-full" id="progress" style="width: 10%"></div>
+        <!-- 각 일정의 시작 지점에 마일스톤 추가 -->
+        <div class="absolute h-4 w-1 bg-red-500" id="milestone1" style="left: 0;"></div>
+        <span class="absolute text-xs" id="label1" style="left: 0; top: 1rem;">1 (08-25)</span>
+
+        <div class="absolute h-4 w-1 bg-red-500" id="milestone2" style="left: 20%;"></div>
+        <span class="absolute text-xs" id="label2" style="left: 20%; top: 1rem;">2 (08-26)</span>
+
+        <div class="absolute h-4 w-1 bg-red-500" id="milestone3" style="left: 40%;"></div>
+        <span class="absolute text-xs" id="label3" style="left: 40%; top: 1rem;">3 (08-28)</span>
+
+        <div class="absolute h-4 w-1 bg-red-500" id="milestone4" style="left: 60%;"></div>
+        <span class="absolute text-xs" id="label4" style="left: 60%; top: 1rem;">4 (09-02)</span>
+
+        <div class="absolute h-4 w-1 bg-red-500" id="milestone5" style="left: 80%;"></div>
+        <span class="absolute text-xs" id="label5" style="left: 80%; top: 1rem;">5 (09-04)</span>
+    </div>
+
+    <h3 class="text-xl mb-2">서비스 일정</h3>
+    <ol class="list-decimal ml-6 mb-6">
+        <li class="mb-4"><strong>Close Beta Test1</strong>: 서비스 제공자(안호성) 지인
+            <ul class="list-disc ml-6">
+                <li>일정: 2023-08-25 ~ 08-27</li>
+            </ul>
+        </li>
+        <li class="mb-4"><strong>Wait List for CBT2</strong>
+            <ul class="list-disc ml-6">
+                <li>일정: 2023-08-26 ~ 08-27</li>
+            </ul>
+        </li>
+        <li class="mb-4"><strong>Close Beta Test2</strong>: 어셈블리 내부
+            <ul class="list-disc ml-6">
+                <li>일정: 2023-08-28 ~ 09-01</li>
+            </ul>
+        </li>
+        <li class="mb-4"><strong>Wait List for OB</strong>
+            <ul class="list-disc ml-6">
+                <li>일정: 2023-08-28 ~ 09-01</li>
+            </ul>
+        </li>
+        <li class="mb-4"><strong>Open Beta</strong>
+            <ul class="list-disc ml-6">
+                <li>일정: 2023-09-02 ~ 09-03</li>
+            </ul>
+        </li>
+        <li class="mb-4"><strong>정식 서비스 시작</strong> 🚀
+            <ul class="list-disc ml-6">
+                <li>일정: 2023-09-04 이후</li>
+            </ul>
+        </li>
+    </ol>
+</div>
+
+<script>
+
+    // KST 기준 현재 날짜를 가져오는 함수
+    function getCurrentDateInKST() {
+        const now = new Date();
+        const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000; // Convert to UTC timestamp
+        const KR_TIME_DIFF = 9 * 60 * 60 * 1000; // Korea is UTC+9
+        const krDate = new Date(utc + KR_TIME_DIFF);
+
+        return krDate.toISOString().split('T')[0];
+    }
+
+    document.getElementById('currentDate').innerText = getCurrentDateInKST();
+
+
+    const milestones = [
+        new Date('2023-08-25').getTime(),
+        new Date('2023-08-26').getTime(),
+        new Date('2023-08-28').getTime(),
+        new Date('2023-09-02').getTime(),
+        new Date('2023-09-04').getTime()
+    ];
+
+    const startDate = new Date('2023-08-24').getTime();
+    const endDate = new Date('2023-09-05').getTime();  // Just a day after the official service launch for better visualization.
+    const currentDate = new Date().getTime();
+
+    const totalDuration = endDate - startDate;
+    const elapsedDuration = currentDate - startDate;
+
+    const progressPercentage = (elapsedDuration / totalDuration) * 100;
+
+    const progressBar = document.getElementById('progress');
+    progressBar.style.width = `${progressPercentage}%`;
+    progressBar.innerText = `${Math.round(progressPercentage)}%`;
+
+    for (let i = 0; i < milestones.length; i++) {
+        const milestonePercentage = ((milestones[i] - startDate) / totalDuration) * 100;
+        document.getElementById(`milestone${i + 1}`).style.left = `${milestonePercentage}%`;
+        document.getElementById(`label${i + 1}`).style.left = `${milestonePercentage}%`;
+    }
+
+    document.getElementById('currentDate').innerText = new Date().toISOString().split('T')[0];
+</script>
+
+</body>
+</html>
