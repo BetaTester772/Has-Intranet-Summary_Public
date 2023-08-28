@@ -88,6 +88,18 @@
             </ul>
         </li>
     </ol>
+
+    <!--    패치노트-->
+    <h3 class="text-xl mb-2">Beta Test 패치노트</h3>
+    <ol class="list-decimal ml-6 mb-6">
+        <li class="mb-4"><strong>8/28</strong>
+            <ul class="list-disc ml-6 mb-2">
+                <li>모델 개선</li>
+                <li>인트라넷 게시글 바로가기 버튼 추가</li>
+            </ul>
+        </li>
+    </ol>
+
 </div>
 
 <script>
@@ -95,10 +107,10 @@
     // KST 기준 현재 날짜를 가져오는 함수
     function getCurrentDateInKST() {
         const kstDate = new Intl.DateTimeFormat('ko-KR', {
-          timeZone: 'Asia/Seoul',
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
+            timeZone: 'Asia/Seoul',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
         }).format(new Date());
 
         return kstDate.replace(/\. /g, '-').slice(0, -1)
